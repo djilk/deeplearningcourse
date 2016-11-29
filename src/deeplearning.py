@@ -9,7 +9,8 @@ import numpy as np
 
 def softmax(x):
     """Compute softmax values for x."""
-    pass # TODO: Compute and return softmax(x)
+    return x;
+    #pass # TODO: Compute and return softmax(x)
 
 
 print (softmax(scores))
