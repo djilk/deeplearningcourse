@@ -13,7 +13,7 @@ def softmax(x):
     result = []
     sum = 0
     for index in range(len(x)):
-        result[index] = x[index]*x[index]
+        result.append(x[index]*x[index])
         sum += result[index]
         
     for index in range(len(x)):
