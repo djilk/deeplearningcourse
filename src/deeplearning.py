@@ -9,7 +9,17 @@ import numpy as np
 
 def softmax(x):
     """Compute softmax values for x."""
-    return x;
+
+    result = []
+    sum = 0
+    for index in range(len(x)):
+        result[index] = x[index]*x[index]
+        sum += result[index]
+        
+    for index in range(len(x)):
+        result[index] /= sum
+    
+    return result;
     #pass # TODO: Compute and return softmax(x)
 
 
