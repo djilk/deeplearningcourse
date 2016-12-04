@@ -30,7 +30,7 @@ def softmax1d(x):
 print (softmax(scores))
 print (softmax(scores2))
 
-
+ 
 # Plot softmax curves
 #import matplotlib.pyplot as plt
 #x = np.arange(-2.0, 6.0, 0.1)
