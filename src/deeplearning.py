@@ -19,7 +19,7 @@ def softmax(x):
 
 def softmax1d(y):
     result1d = np.exp(y)
-    total = np.sum(result)
+    total = np.sum(result1d)
     for index in range(len(result1d)):
         result1d[index] /= total
     return result1d;
