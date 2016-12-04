@@ -13,7 +13,7 @@ def softmax(x):
         return softmax1d(x)
     else:
         result = np.zeros(x.shape)
-        for index in 0, x.shape[0]:
+        for index in range(x.shape[0]):
             result[index] = softmax(x[index])
         return result;
 
