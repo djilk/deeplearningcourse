@@ -25,7 +25,7 @@ def softmax1d(y):
     return result1d;
 
 
-scores = np.array([3.0, 1.0, 0.2])
+scores = np.array([1.0, 2.0, 3.0])
 scores2 = np.array([[1, 2, 3, 6],
                    [2, 4, 5, 6],
                    [3, 8, 7, 6]])
