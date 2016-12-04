@@ -12,7 +12,7 @@ def softmax(x):
     if (x.ndim == 1):
         return softmax1d(x)
     else:
-        result = np.zeroes(x.shape)
+        result = np.zeros(x.shape)
         for index in 0, x.shape[0]:
             result[index] = softmax(x[index])
         return result;
