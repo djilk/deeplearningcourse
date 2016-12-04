@@ -18,6 +18,7 @@ def softmax(x):
         return result;
 
 def softmax1d(x):
+    print("1d: " + x)
     result = np.exp(np.asarray(x, dtype=np.float64))     # have to convert to floats in case ints sent
     total = np.sum(result)
     for index in range(len(result)):
