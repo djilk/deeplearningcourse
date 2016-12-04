@@ -3,12 +3,9 @@
 # and open the template in the editor.
 """Softmax."""
 
-scores = [3.0, 1.0, 0.2]
-scores2 = np.array([[1, 2, 3, 6],
-                   [2, 4, 5, 6],
-                   [3, 8, 7, 6]])
-                   
 import numpy as np
+
+    
 
 def softmax(x):
     """Compute softmax values for x."""
@@ -27,6 +24,12 @@ def softmax1d(x):
         result[index] /= total
     return result;
 
+
+scores = [3.0, 1.0, 0.2]
+scores2 = np.array([[1, 2, 3, 6],
+                   [2, 4, 5, 6],
+                   [3, 8, 7, 6]])
+               
 print (softmax(scores))
 print (softmax(scores2))
 
