@@ -17,12 +17,12 @@ def softmax(x):
             result[index] = softmax(x[index])
         return result;
 
-def softmax1d(x):
-    result = np.exp(x)
+def softmax1d(y):
+    result1d = np.exp(y)
     total = np.sum(result)
-    for index in range(len(result)):
-        result[index] /= total
-    return result;
+    for index in range(len(result1d)):
+        result1d[index] /= total
+    return result1d;
 
 
 scores = np.array([3.0, 1.0, 0.2])
