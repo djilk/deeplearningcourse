@@ -12,11 +12,12 @@ def softmax(x):
     if (x.ndim == 1):
         return softmax1d(x)
     else:
+        y = x
         if (x.ndim == 2):
-            x.transpose()
-        result = np.zeros(x.shape)
-        for index in range(x.shape[0]):
-            result[index] = softmax(x[index])
+            y = x.transpose()
+        result = np.zeros(y.shape)
+        for index in range(y.shape[0]):
+            result[index] = softmax(y[index])
         return result;
 
 def softmax1d(x):
