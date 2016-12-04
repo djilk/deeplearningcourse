@@ -24,6 +24,7 @@ def softmax1d(x):
     total = np.sum(result)
     for index in range(len(result)):
         result[index] /= total
+    print (result)
     return result;
 
 
