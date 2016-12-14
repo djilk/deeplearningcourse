@@ -4,6 +4,6 @@
 
 import tensorflow as tf
 
-tf.print(tf.linspace(10.0, 12.0, 3))
+tf.Print(tf.linspace(10.0, 12.0, 3))
 
 
