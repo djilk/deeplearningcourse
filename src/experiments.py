@@ -6,6 +6,7 @@ import tensorflow as tf
 
 list = []
 list.append(tf.linspace(10.0, 12.0, 3))
+print(list)
 result = tf.Print(tf.ones([1], tf.int32), list)
 
 
