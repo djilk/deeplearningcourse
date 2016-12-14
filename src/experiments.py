@@ -5,8 +5,8 @@
 import tensorflow as tf
 
 list = []
-first = tf.constant([[1, 2], [3, 4]])
-add = tf.ones([2, 2])
+first = tf.constant([[1, 2], [3, 4]], tf.float32)
+add = tf.ones([2, 2], tf.float32)
 sum = tf.add(first, add)
 list.append(sum)
 printer = tf.Print(tf.ones([1]), list, "Output:")
