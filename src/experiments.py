@@ -12,5 +12,6 @@ transpose = tf.transpose(sum)
 #printer = tf.Print(tf.ones([1]), [transpose], "Output:", summarize=30)
 sess = tf.Session()
 print (sess.run(transpose))
+print (sess.run(sumslice))
 
 
