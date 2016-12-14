@@ -5,9 +5,11 @@
 import tensorflow as tf
 
 list = []
-list.append(tf.linspace(10.0, 12.0, 3))
-print(list)
-printer = tf.Print(tf.ones([1], tf.int32), list)
+first = tf.constant([[1, 2], [3, 4]])
+add = tf.ones([2, 2])
+sum = tf.add(first, add)
+list.append(sum)
+printer = tf.Print(tf.ones([1]), list, "Output:")
 sess = tf.Session()
 sess.run(printer)
 
