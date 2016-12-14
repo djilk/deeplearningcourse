@@ -4,12 +4,11 @@
 
 import tensorflow as tf
 
-list = []
 first = tf.constant([[1, 2], [3, 4]], tf.float32)
 add = tf.ones([2, 2], tf.float32)
 sum = tf.add(first, add)
-list.append(sum)
-printer = tf.Print(tf.ones([1]), list, "Output:", summarize=30)
+sumslice = tf.slice(sum, [0, 0], [1, 0])
+printer = tf.Print(tf.ones([1]), [sumslice], "Output:", summarize=30)
 sess = tf.Session()
 sess.run(printer)
 
