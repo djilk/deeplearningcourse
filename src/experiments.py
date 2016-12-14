@@ -4,9 +4,9 @@
 
 import tensorflow as tf
 
-list = []
+list = [[1]]
 list.append(tf.linspace(10.0, 12.0, 3))
-tf.Print([1], list)
+result = tf.Print([1], list)
 
 
 
