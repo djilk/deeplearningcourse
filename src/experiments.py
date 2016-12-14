@@ -9,8 +9,8 @@ add = tf.ones([2, 2], tf.float32)
 sum = tf.add(first, add)
 sumslice = tf.slice(sum, [0, 0], [2, 1])
 transpose = tf.transpose(sum)
-printer = tf.Print(tf.ones([1]), [transpose], "Output:", summarize=30)
+#printer = tf.Print(tf.ones([1]), [transpose], "Output:", summarize=30)
 sess = tf.Session()
-sess.run(printer)
+sess.run(transpose)
 
 
