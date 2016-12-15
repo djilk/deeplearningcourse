@@ -9,7 +9,7 @@ nbins = 5
 value_range = [0.0, 5.0]
 new_values = [-1.0, 0.0, 1.5, 2.0, 5.0, 15]
 
-with tf.default_session() as sess:
+with tf.Session() as sess:
   hist = tf.histogram_fixed_width(new_values, value_range, nbins)
   variables.global_variables_initializer().run()
   print(sess.run(hist))
