@@ -25,7 +25,7 @@ shifts = tf.linspace(-half_bin, half_bin, shifts)
 shift = tf.placeholder(tf.float32, [2])
 hist = tf.histogram_fixed_width(data, range - shift, bins)
 sess = tf.Session()
-print(sess.run(hist, {shift: shifts.eval()}))
+print(sess.run(hist, {shift: sess.eval(shifts)}))
   
   #=> [2, 1, 1, 0, 2]
 
