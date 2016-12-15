@@ -4,14 +4,15 @@
 
 import tensorflow as tf
 
-first = tf.constant([[1, 2], [3, 4]], tf.float32)
-add = tf.ones([2, 2], tf.float32)
-sum = tf.add(first, add)
-sumslice = tf.slice(sum, [0, 0], [2, 1])
-transpose = tf.transpose(sum)
-#printer = tf.Print(tf.ones([1]), [transpose], "Output:", summarize=30)
-sess = tf.Session()
-print (sess.run(transpose))
-print (sess.run(sumslice))
+# Bins will be:  (-inf, 1), [1, 2), [2, 3), [3, 4), [4, inf)
+nbins = 5
+value_range = [0.0, 5.0]
+new_values = [-1.0, 0.0, 1.5, 2.0, 5.0, 15]
 
+with tf.default_session() as sess:
+  hist = tf.histogram_fixed_width(new_values, value_range, nbins)
+  variables.global_variables_initializer().run()
+  print(sess.run(hist))
+  
+  #=> [2, 1, 1, 0, 2]
 
