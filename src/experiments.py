@@ -23,7 +23,7 @@ range = [max, min]
 half_bin = (max - min) / (bins * 2)
 shifts = tf.linspace(-half_bin, half_bin, shifts)
 shift = tf.placeholder(tf.float32, [])
-hist = tf.histogram_fixed_width(data, tf.subtract(range, [shift, shift]), bins)
+hist = tf.histogram_fixed_width(data, tf.sub(range, [shift, shift]), bins)
 sess = tf.Session()
 print(sess.run(hist, {shift: sess.run(shifts)}))
   
