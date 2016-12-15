@@ -6,6 +6,7 @@
 # but first do it for the Copper data
 
 import tensorflow as tf
+import numpy as np
 
 # Bins will be:  (-inf, 1), [1, 2), [2, 3), [3, 4), [4, inf)
 bins = 100
@@ -21,7 +22,7 @@ min = tf.reduce_min(data)
 max = tf.reduce_max(data)
 range = [max, min]
 half_bin = (max - min) / (bins * 2)
-shifts = numpy.linspace(-half_bin, half_bin, shifts)
+shifts = np.linspace(-half_bin, half_bin, shifts)
 shift = tf.placeholder(tf.float32, [2])
 hist = tf.histogram_fixed_width(data, range - shift, bins)
 sess = tf.Session()
