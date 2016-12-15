@@ -18,7 +18,7 @@ max = tf.reduce_max(new_values)
 value_range = [max, min]
 
 hist = tf.histogram_fixed_width(new_values, value_range, nbins)
-print(tf.eval(hist))
+print(tf.Session.run(hist))
   
   #=> [2, 1, 1, 0, 2]
 
