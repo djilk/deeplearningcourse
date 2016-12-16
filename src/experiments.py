@@ -30,7 +30,7 @@ def one_hist(accumulator, element):
 
 #avg_hist = tf.foldl(one_hist, shifts, initial_accumulator)
 
-
+sess = tf.Session()
 #print(sess.run(hist, feed_dict={shift: sess.run(shifts)}))
 #print(sess.run(avg_hist))
 
