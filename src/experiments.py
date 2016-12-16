@@ -32,7 +32,9 @@ avg_hist = tf.foldl(one_hist, shifts, initial_accumulator)
 
 
 #print(sess.run(hist, feed_dict={shift: sess.run(shifts)}))
-print(sess.run([avg_hist]))
+print(sess.run(avg_hist))
+
+#print(sess.run(initial_accumulator))
   
   #=> [2, 1, 1, 0, 2]
 
