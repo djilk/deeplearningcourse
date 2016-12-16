@@ -22,7 +22,7 @@ max = tf.reduce_max(data)
 range = [max, min]
 half_bin = (max - min) / (bins * 2)
 shifts = tf.linspace(-half_bin, half_bin, shifts)
-initial_accumulator = tf.zeros([100], tf.int32)  # needs to use 'bin' for size but can't
+initial_accumulator = tf.zeros([bins], tf.int32)  # needs to use 'bin' for size but can't
 
 def one_hist(accumulator, element):
     hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
