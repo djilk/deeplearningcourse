@@ -28,12 +28,11 @@ def one_hist(accumulator, element):
     hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
     tf.add(accumulator, hist)
 
-avg_hist = tf.foldl(one_hist, shifts, initializer=initial_accumulator)
-tf.initialize_all_variables().run()
+#avg_hist = tf.foldl(one_hist, shifts, initializer=initial_accumulator)
+#tf.initialize_all_variables().run()
 sess = tf.Session()
-#print(sess.run(hist, feed_dict={shift: sess.run(shifts)}))
-print(sess.run(avg_hist))
-
+#print(sess.run(avg_hist))
+print (sess.run(shifts))
   
   #=> [2, 1, 1, 0, 2]
 
