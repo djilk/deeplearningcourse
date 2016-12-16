@@ -22,12 +22,13 @@ max = tf.reduce_max(data)
 range = [max, min]
 half_bin = (max - min) / (bins * 2)
 shifts = tf.linspace(-half_bin, half_bin, shifts)
+initial_accumulator = tf.zeros([bins], tf.int32)
 
 def one_hist(accumulator, element):
     hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
     tf.add(accumulator, hist)
 
-avg_hist = tf.foldl(one_hist, shifts, tf.zeros([bins], tf.int32))
+avg_hist = tf.foldl(one_hist, shifts, initial_accumulator)
 
 
 #print(sess.run(hist, feed_dict={shift: sess.run(shifts)}))
