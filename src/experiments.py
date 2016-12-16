@@ -28,7 +28,10 @@ def one_hist(accumulator, element):
     hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
     return tf.add(accumulator, hist)
 
-avg_hist = tf.foldl(one_hist, shift_tensor, initializer=initial_accumulator)
+sum_hist = tf.foldl(one_hist, shift_tensor, initial_accumulator)
+total = tf.reduce_sum(sum_hist)
+avg_hist = tf.div(tf.to_float(sum_hist), total)
+
 #tf.initialize_all_variables().run()
 sess = tf.Session()
 print(sess.run(avg_hist))
