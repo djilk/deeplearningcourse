@@ -29,7 +29,7 @@ def one_hist(accumulator, element):
     return tf.add(accumulator, hist)
 
 sum_hist = tf.foldl(one_hist, shift_tensor, initial_accumulator)
-total = tf.reduce_sum(sum_hist)
+total = tf.to_float(tf.reduce_sum(sum_hist))
 avg_hist = tf.div(tf.to_float(sum_hist), total)
 
 #tf.initialize_all_variables().run()
