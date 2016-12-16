@@ -26,7 +26,7 @@ initial_accumulator = tf.zeros([bins], tf.int32)
 
 def one_hist(accumulator, element):
     hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
-    tf.add(accumulator, hist)
+    return tf.add(accumulator, hist)
 
 avg_hist = tf.foldl(one_hist, shift_tensor, initializer=initial_accumulator)
 #tf.initialize_all_variables().run()
