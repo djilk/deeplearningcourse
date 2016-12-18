@@ -19,7 +19,7 @@ data = normal
 
 min = tf.reduce_min(data)
 max = tf.reduce_max(data)
-range = [max, min]
+range = [min, max]
 half_bin = (max - min) / (bins * 2)
 shift_tensor_1d = tf.linspace(-half_bin, half_bin, shifts)
 shift_tensor_2d = tf.expand_dims(shift_tensor_1d, 1)
