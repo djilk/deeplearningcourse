@@ -21,14 +21,21 @@ min = tf.reduce_min(data)
 max = tf.reduce_max(data)
 range = [max, min]
 half_bin = (max - min) / (bins * 2)
-shift_tensor = tf.linspace(-half_bin, half_bin, shifts)
+shift_tensor_1d = tf.linspace(-half_bin, half_bin, shifts)
+shift_tensor_2d = tf.expand_dims(shift_tensor_1d, 1)
+range_tensor_2d = tf.expand_dims(range, 0)
+range_elements = tf.add(range_tensor_2d, shift_tensor_2d)
+print(sess.run(range, shift_tensor_1d, range_elements))
+
+return
+
 initial_accumulator = tf.zeros([bins], tf.int32)
 
 def one_hist(accumulator, element):
     hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
     return tf.add(accumulator, hist)
 
-sum_hist = tf.foldl(one_hist, shift_tensor, initial_accumulator)
+sum_hist = tf.foldl(one_hist, shift_tensor_1d, initial_accumulator)
 total = tf.to_float(tf.reduce_sum(sum_hist))
 avg_hist = tf.div(tf.to_float(sum_hist), total)
 
