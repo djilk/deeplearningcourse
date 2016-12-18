@@ -4,10 +4,6 @@
 
 import tensorflow as tf
 
-# Performs one histogram with the given range, accumulating the counts
-def one_histogram(accumulator, element):
-    hist = tf.histogram_fixed_width(data, element, num_bins)
-    return tf.add(accumulator, hist)
 
 def average_histogram(data, num_bins, num_shifts):
     # Set up the range tensor
@@ -23,6 +19,11 @@ def average_histogram(data, num_bins, num_shifts):
 
     # Create the range elements for the shifts using broadcast addition
     range_elements = tf.add(range_tensor_2d, shift_tensor_2d)
+
+    # Performs one histogram with the given range, accumulating the counts
+    def one_histogram(accumulator, element):
+        hist = tf.histogram_fixed_width(data, element, num_bins)
+        return tf.add(accumulator, hist)
 
     # Perform the shifted histograms and divide by the total count
     initial_accumulator = tf.zeros([num_bins], tf.int32)
