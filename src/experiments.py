@@ -26,16 +26,17 @@ shift_tensor_2d = tf.expand_dims(shift_tensor_1d, 1)
 range_tensor_2d = tf.expand_dims(range, 0)
 range_elements = tf.add(range_tensor_2d, shift_tensor_2d)
 sess = tf.Session()
-print(sess.run([range, shift_tensor_1d, range_elements]))
-
+#print(sess.run([range, shift_tensor_1d, range_elements]))
 
 initial_accumulator = tf.zeros([bins], tf.int32)
 
 def one_hist(accumulator, element):
-    hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
+    #hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
+    hist = tf.histogram_fixed_width(data, element, bins)
     return tf.add(accumulator, hist)
 
-sum_hist = tf.foldl(one_hist, shift_tensor_1d, initial_accumulator)
+#sum_hist = tf.foldl(one_hist, shift_tensor_1d, initial_accumulator)
+sum_hist = tf.foldl(one_hist, range_elements, initial_accumulator)
 total = tf.to_float(tf.reduce_sum(sum_hist))
 avg_hist = tf.div(tf.to_float(sum_hist), total)
 
