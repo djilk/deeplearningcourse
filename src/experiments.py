@@ -27,7 +27,6 @@ range_tensor_2d = tf.expand_dims(range, 0)
 range_elements = tf.add(range_tensor_2d, shift_tensor_2d)
 print(sess.run(range, shift_tensor_1d, range_elements))
 
-return
 
 initial_accumulator = tf.zeros([bins], tf.int32)
 
