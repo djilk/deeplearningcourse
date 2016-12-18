@@ -1,49 +1,42 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
-
-# The goal of this is to create an "averaged histogram" function
-# but first do it for the Copper data
+# This experiment is an averaged histogram given a data set of
+#    single-valued points. It uses broadcast addition and also 
+#    a "higher level" operation (foldl) to process the histogram shifts
 
 import tensorflow as tf
 
-# Bins will be:  (-inf, 1), [1, 2), [2, 3), [3, 4), [4, inf)
-bins = 100
-shifts = 10
-#value_range = [0.0, 5.0]
-
-#new_values = tf.constant([-1.0, 0.0, 1.5, 2.0, 5.0, 15], tf.float32)
+# Set up the data - for testing, using normal distribution
 normal = tf.random_normal([10000], 0.0, 100.0)
-
 data = normal
 
-min = tf.reduce_min(data)
-max = tf.reduce_max(data)
-range = [min, max]
-half_bin = (max - min) / (bins * 2)
-shift_tensor_1d = tf.linspace(-half_bin, half_bin, shifts)
-shift_tensor_2d = tf.expand_dims(shift_tensor_1d, 1)
-range_tensor_2d = tf.expand_dims(range, 0)
+# Fix the number of bins and shifts for the histograms 
+num_bins = 100
+num_shifts = 10
+
+# Set up the range tensor
+data_min = tf.reduce_min(data)
+data_max = tf.reduce_max(data)
+data_range = [data_min, data_max]
+range_tensor_2d = tf.expand_dims(data_range, 0)
+
+# Set up the shift tensor
+half_bin = (data_max - data_min) / (num_bins * 2)
+shift = tf.linspace(-half_bin, half_bin, num_shifts)
+shift_tensor_2d = tf.expand_dims(shift, 1)
+
+# Create the range elements for the shifts using broadcast addition
 range_elements = tf.add(range_tensor_2d, shift_tensor_2d)
-sess = tf.Session()
-#print(sess.run([range, shift_tensor_1d, range_elements]))
 
-initial_accumulator = tf.zeros([bins], tf.int32)
-
-def one_hist(accumulator, element):
-    #hist = tf.histogram_fixed_width(data, tf.add(range, [element, element]), bins)
-    hist = tf.histogram_fixed_width(data, element, bins)
+# Performs one shifted histogram, accumulating the counts
+def one_histogram(accumulator, element):
+    hist = tf.histogram_fixed_width(data, element, num_bins)
     return tf.add(accumulator, hist)
 
-#sum_hist = tf.foldl(one_hist, shift_tensor_1d, initial_accumulator)
-sum_hist = tf.foldl(one_hist, range_elements, initial_accumulator)
+# Perform the shifted histograms and divide by the total count
+initial_accumulator = tf.zeros([num_bins], tf.int32)
+sum_hist = tf.foldl(one_histogram, range_elements, initial_accumulator)
 total = tf.to_float(tf.reduce_sum(sum_hist))
 avg_hist = tf.div(tf.to_float(sum_hist), total)
 
-#tf.initialize_all_variables().run()
-
+# Run the session
+sess = tf.Session()
 print(sess.run([sum_hist, avg_hist]))
-#print (sess.run(shift_tensor))
-  
-  #=> [2, 1, 1, 0, 2]
-
