@@ -25,6 +25,7 @@ shift_tensor_1d = tf.linspace(-half_bin, half_bin, shifts)
 shift_tensor_2d = tf.expand_dims(shift_tensor_1d, 1)
 range_tensor_2d = tf.expand_dims(range, 0)
 range_elements = tf.add(range_tensor_2d, shift_tensor_2d)
+sess = tf.Session()
 print(sess.run(range, shift_tensor_1d, range_elements))
 
 
@@ -39,7 +40,7 @@ total = tf.to_float(tf.reduce_sum(sum_hist))
 avg_hist = tf.div(tf.to_float(sum_hist), total)
 
 #tf.initialize_all_variables().run()
-sess = tf.Session()
+
 print(sess.run(avg_hist))
 #print (sess.run(shift_tensor))
   
