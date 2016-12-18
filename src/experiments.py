@@ -42,7 +42,7 @@ avg_hist = tf.div(tf.to_float(sum_hist), total)
 
 #tf.initialize_all_variables().run()
 
-print(sess.run(avg_hist))
+print(sess.run([sum_hist, avg_hist]))
 #print (sess.run(shift_tensor))
   
   #=> [2, 1, 1, 0, 2]
